@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Bebas+Neue&display=swap');
+
+button {
+    all: unset;
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    background: white;
+    color: rgb(0 0 80);
+    font-size: 3vmin;
+    font-family: 'Atkinson Hyperlegible Mono';
+    /* background-size: 100vh; */
+}
+
+.screen {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: left;
+    padding: 0 calc(50% - 40vmin);
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    &:not(.active) {
+        display: none;
+    }
+}
+
+h1,
+h2 {
+    margin: 0 0 4vmin 0;
+    font-family: 'Bebas Neue';
+    font-size: 10vmin;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 14vmin;
+    margin: 0;
+
+    position: relative;
+}
+
+@keyframes player-spritesheet {
+    0% {
+        object-position: 0% 0%;
+    }
+    25% {
+        object-position: 33.33% 0%;
+    }
+    50% {
+        object-position: 66.66% 0%;
+    }
+    75% {
+        object-position: 100% 0%;
+    }
+    100% {
+        object-position: 0% 0%;
+    }
+}
+
+img {
+    width: 32vmin;
+    height: 32vmin;
+    object-fit: cover;
+    image-rendering: pixelated;
+    float: right;
+    position: absolute;
+    inset: 0 0 auto auto;
+    transform: translate(0, -20%);
+    animation: 0.5s step-start infinite player-spritesheet;
+}
+
+h3 {
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+p {
+    margin: 0 0 0.5em 0;
+}
+
+button {
+    padding: 0.5em 0;
+    font-family: 'Atkinson Hyperlegible Mono';
+    font-size: 3vmin;
+
+    &:is(:hover, :focus) {
+        background: rgb(0 0 0 / 0.05);
+        &::before {
+            content: '> ';
+        }
+    }
+
+    &.esc {
+        float: right;
+        padding: 0.5em;
+        &::before {
+            content: '';
+        }
+    }
+
+    &:disabled {
+        &:hover::before {
+            content: '';
+        }
+        color: rgb(180 180 180);
+    }
+}
+
+.menu button {
+    margin-top: 0.5em;
+
+    padding: 0.5em 0;
+    width: 100%;
+
+    &::before {
+        content: '';
+    }
+}
+
+#store-screen {
+    overflow-y: scroll;
+    & button:not(.esc) {
+        width: 100%;
+    }
+    & h3 {
+        margin: 1em 0 0.5em 0;
+    }
+}
+
+#settings-screen button::before {
+    content: '';
+}
+
+#settings-screen input {
+    margin-bottom: 1em;
+}
+
+#game-screen {
+    padding: 0;
+
+    &.active {
+        display: block;
+    }
+}
+
+#game-screen canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor:
+        url(./assets/images/cursor.png) 0 0,
+        pointer;
+}
+
+.menu {
+    &:not(.active) {
+        display: none;
+    }
+
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(255 255 255 / 0.4);
+    backdrop-filter: blur(1vmin);
+
+    text-align: center;
+}
+
+input[type='range'] {
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flight</title>
+
+        <script src="./scripts/main.js" type="module"></script>
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="title-screen" class="screen active">
+            <h1>Flight <img src="./assets/images/player.png"></img></h1>
+            <button id="newgame-button">New game</button>
+            <button data-target="#tutorial-screen">How to play</button>
+            <button data-target="#store-screen">Store</button>
+            <button data-target="#settings-screen">Settings</button>
+        </div>
+
+        <div id="tutorial-screen" class="screen">
+            <h2>How to play <button class="esc" data-target="#title-screen">[Back]</button></h2>
+            <p>Press S to jump, and Escape (or Spacebar) to pause. Use your mouse to aim, and left click to fire a projectile.</p>
+            <p>The goal is to last long as possible. However, you can also collect coins using your projectiles. Coins will buy you upgrades in the store.</p>
+        </div>
+
+        <div id="store-screen" class="screen">
+            <h2>Store <button class="esc" data-target="#title-screen">[Back]</button></h2>
+
+            <div id="base-shotgun">
+                <p>You have <span id="points-counter"></span> points</p>
+                <h3>Zero-recoil shotgun <span id="owns-shotgun">(owned)</span></h3>
+                <p>Press D to obliterate the next pipe</p>
+                <p>Cooldown: 5s</p>
+                <button id="buy-shotgun" disabled>Buy shotgun (15 points)</button>
+            </div>
+        </div>
+
+        <div id="settings-screen" class="screen">
+            <h2>Settings <button class="esc" data-target="#title-screen">[Back]</button></h2>
+            <label for="volume-input">Volume: <span id="volume-display">100</span></label>
+            <input id="volume-input" type="range" value="100" min="0" max="100" step="5" />
+            <button id="space-pause">Spacebar to pause: <span id="space-pause-display">Yes</span></button>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div id="pause-menu" class="menu">
+                <div>
+                    <h2>Paused</h2>
+                    <button id="resume-button" class="esc">Resume</button>
+                    <button id="end-game-button">End game</button>
+                </div>
+            </div>
+            <div id="confirm-menu" class="menu">
+                <div>
+                    <h2>End game?</h2>
+                    <button id="cancel-end-game-button" class="esc">Cancel</button>
+                    <button id="confirm-end-game-button">Yes</button>
+                </div>
+            </div>
+            <div id="gameover-menu" class="menu">
+                <div>
+                    <h2>Game over!</h2>
+                    <p>Score: <span id="gameover-score"></span></p>
+                    <p>Time: <span id="gameover-time"></span></p>
+                    <button id="restart">Restart</button>
+                    <button data-target="#title-screen" class="esc">[Back]</button>
+                </div>
+            </div>
+            <canvas></canvas>
+        </div>
+    </body>
+</html>
